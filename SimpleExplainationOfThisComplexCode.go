@@ -52,24 +52,10 @@
 //             result = append(result , e)
 //             mx.Unlock()
 //         }(value)
-
-        
-        
 //     }
 //     wg.Wait()
-    
-    
 //     fmt.Println(result)
-    
-    
-  
-  
-  
-
-  
 // }
-
-
 
 // output is 
 // Try programiz.pro

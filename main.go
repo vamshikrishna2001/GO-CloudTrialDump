@@ -8,6 +8,7 @@ import (
 	"vamshi/Api"
 	"vamshi/Models"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"time"
 
 	// "reflect"
 )
@@ -23,6 +24,7 @@ func main(){
 
 	dict := make(map[string]Models.EventJson)
 	// fmt.Println("length of vols is ",len(vol_ids)) is 6
+	start := time.Now()
 	for  index, value := range vol_ids{
 
 		wg.Add(1)
@@ -46,6 +48,11 @@ func main(){
 		
 	}
 	wg.Wait()
+
+	end := time.Now()
+	diff := end.Sub(start)
+
+	fmt.Println("total time taken ",diff)
 
 	Utils.Json_writer("/home/abacus/cloud_trial_dump_project/Dumps/vol_to_snap.json",dict)
 	

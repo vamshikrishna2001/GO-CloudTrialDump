@@ -24,11 +24,11 @@ func main(){
 	dict := make(map[string]Models.EventJson)
 	// fmt.Println("length of vols is ",len(vol_ids)) is 6
 	for  index, value := range vol_ids{
-		fmt.Println(index)
 
 		wg.Add(1)
 		go func(index int ,value string){ // passing index and value as arguments is necessary if not index and value remain global variables and we end up having only the results of index 5 because index self update itself from 0 to 5 and go routine takes the global index value which is 5 
 			defer wg.Done()
+			fmt.Println(index,value)
 			event , snap_id := Api.OriginalVolEventNameTimeResource(sess,value)
 			// you can also do this way .. below one 
 

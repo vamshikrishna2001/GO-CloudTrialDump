@@ -31,6 +31,9 @@ func main(){
 			defer wg.Done()
 			event , snap_id := Api.OriginalVolEventNameTimeResource(sess,value)
 			// you can also do this way .. below one 
+
+
+		
 			event.EventResource.(map[string]interface{})[snap_id] = Api.CreatedSnapEventNameTimeResource(sess,snap_id) // this is called assert typing any questions go to https://github.com/vamshikrishna2001/GO-TRYOUTS/blob/main/Compulsory-scenarios-of-assert-types
 			// h := make(map[string]interface{})
 			// h[snap_id] = Api.CreatedSnapEventNameTimeResource(sess,snap_id)

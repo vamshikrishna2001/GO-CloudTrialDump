@@ -52,10 +52,10 @@ func OriginalVolEventNameTimeResource(sess *session.Session,resource_id string) 
     // fmt.Println(resp.Events)
     var snap_id string;
     for _, event := range resp.Events {
-        // fmt.Println("Event Name:", *event.EventName)
-        // fmt.Println("Event Time:", *event.EventTime)
-        // fmt.Println("Event Source:", *event.EventSource)
-        // fmt.Println("-----------------------------")
+        fmt.Println("Event Name:", *event.EventName)
+        fmt.Println("Event Time:", *event.EventTime)
+        fmt.Println("Event Source:", *event.EventSource)
+        fmt.Println("-----------------------------")
         snap_id = *event.Resources[0].ResourceName
         snapshot_map := make(map[string]interface{})
         snapshot_map[snap_id] = nil

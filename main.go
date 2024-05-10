@@ -1,6 +1,7 @@
 package main
 
 import (
+	"time"
 	"sync"
 	"fmt"
 	"log"
@@ -62,6 +63,8 @@ func main(){
 
 	dict := make(map[string]Models.EventJson)
 	// fmt.Println("length of vols is ",len(vol_ids)) is 6
+
+	start := time.Now()
 	for  index, value := range vol_ids{  
 		wg.Add(1)
 		go func(index int , value string){  // you need to give the parameters as the argument or else by the time new go routine is created index value is getting updated 
@@ -77,7 +80,10 @@ func main(){
 
 
 
+	end := time.Now()
 
+	diff := end.Sub(start)
+	fmt.Println("Total time taken ",diff)
 	Utils.Json_writer("/home/abacus/cloud_trial_dump_project/Dumps/vol_to_snap.json",dict)
 	
 	// c := Api.CreatedSnapEventNameTimeResource(sess,"snap-0f803e97f882751f1")

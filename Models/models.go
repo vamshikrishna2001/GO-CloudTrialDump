@@ -9,3 +9,11 @@ type EventJson struct{
 	EventTime time.Time
 	EventResource interface{}
 }
+
+
+type ChannelCombiner struct{
+	Vol_id string
+	Snap_id string 
+	Event EventJson
+
+}

@@ -27,7 +27,7 @@ func main(){
 		fmt.Println(index)
 
 		wg.Add(1)
-		go func(index int ,value string){
+		go func(index int ,value string){ // passing index and value as arguments is necessary if not index and value remain global variables and we end up having only the results of index 5 because index self update itself from 0 to 5 and go routine takes the global index value which is 5 
 			defer wg.Done()
 			event , snap_id := Api.OriginalVolEventNameTimeResource(sess,value)
 			// you can also do this way .. below one 

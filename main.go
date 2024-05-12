@@ -19,7 +19,7 @@ func main(){
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
         SharedConfigState: session.SharedConfigEnable,
     }))
-	vol_ids, _ := Utils.AWS_resource_reader_from_txt("/home/abacus/cloud_trial_dump_project/Dumps/volume_ids.txt")
+	vol_ids, _ := Utils.AWS_resource_reader_from_txt("/home/abacus/cloud_trial_dump_project/GO-CloudTrialDump/Dumps/volume_ids.txt")
 	log.Println("Successfully read the file")
 
 	dict := make(map[string]Models.EventJson)

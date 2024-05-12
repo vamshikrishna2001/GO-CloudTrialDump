@@ -42,10 +42,28 @@ func OriginalVolEventNameTimeResource(sess *session.Session,resource_id string) 
 
     // Retrieve events associated with the resource name
     resp, err := svc.LookupEvents(params)
+
+    maxRetries := 20
+    retryCount := 0
+
+    for retryCount < maxRetries {
+        resp, err = svc.LookupEvents(params)
+        if err == nil {
+            // Operation succeeded, break out of the loop
+            break
+        }
+    
+        fmt.Println("Error encountered:", err)
+        fmt.Println("Params:", params)
+    
+        retryCount++
+        fmt.Printf("Retry attempt #%d\n", retryCount)
+        time.Sleep(30*time.Millisecond)
+    }
     if err != nil {
         fmt.Println("service client create cheyyalekapoyam ayya in vol ",err)
-		log.Fatalf("service client create cheyyalekapoyam ayya in vol ")
-
+        fmt.Println(params)
+		log.Fatalf("service client create cheyyalekapoyam ayya in vol")
     }
 
     var Event Models.EventJson;
@@ -80,25 +98,45 @@ func CreatedSnapEventNameTimeResource(sess *session.Session,resource_id string) 
     svc := cloudtrail.New(sess)
 
     // Get resource name from command line arguments
-    resourceName := resource_id
+    // resourceName := resource_id
 
     // Prepare input parameters for LookupEvents API call
     params := &cloudtrail.LookupEventsInput{
         LookupAttributes: []*cloudtrail.LookupAttribute{
             {
                 AttributeKey:   aws.String("ResourceName"),
-                AttributeValue: aws.String(resourceName),
+                AttributeValue: aws.String(resource_id),
             },
         },
     }
 
     // Retrieve events associated with the resource name
     resp, err := svc.LookupEvents(params)
-    if err != nil {
-        // fmt.Println(resourceName)
-        fmt.Println("service client create cheyyalekapoyam ayya in snap ",err)
-		// log.Fatalf("service client create cheyyalekapoyam ayya in snapshot")
+    maxRetries := 20
+    retryCount := 0
+
+    for retryCount < maxRetries {
+        resp, err = svc.LookupEvents(params)
+        if err == nil {
+            // Operation succeeded, break out of the loop
+            break
+        }
+    
+        fmt.Println("Error encountered:", err)
+        fmt.Println("Params:", params)
+    
+        retryCount++
+        fmt.Printf("Retry attempt #%d\n", retryCount)
+        time.Sleep(30*time.Millisecond)
+
     }
+    if err != nil {
+        fmt.Println("service client create cheyyalekapoyam ayya in snap ",err)
+        fmt.Println(params)
+		log.Fatalf("service client create cheyyalekapoyam ayya in snap")
+    }
+
+
 
 
     created_snapshot_map := make(map[string]time.Time)

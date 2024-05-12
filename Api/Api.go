@@ -43,7 +43,9 @@ func OriginalVolEventNameTimeResource(sess *session.Session,resource_id string) 
     // Retrieve events associated with the resource name
     resp, err := svc.LookupEvents(params)
     if err != nil {
-		log.Fatalf("service client create cheyyalekapoyam ayya in vol")
+        fmt.Println("service client create cheyyalekapoyam ayya in vol ",err)
+		log.Fatalf("service client create cheyyalekapoyam ayya in vol ")
+
     }
 
     var Event Models.EventJson;
@@ -52,10 +54,10 @@ func OriginalVolEventNameTimeResource(sess *session.Session,resource_id string) 
     // fmt.Println(resp.Events)
     var snap_id string;
     for _, event := range resp.Events {
-        fmt.Println("Event Name:", *event.EventName)
-        fmt.Println("Event Time:", *event.EventTime)
-        fmt.Println("Event Source:", *event.EventSource)
-        fmt.Println("-----------------------------")
+        // fmt.Println("Event Name:", *event.EventName)
+        // fmt.Println("Event Time:", *event.EventTime)
+        // fmt.Println("Event Source:", *event.EventSource)
+        // fmt.Println("-----------------------------")
         snap_id = *event.Resources[0].ResourceName
         snapshot_map := make(map[string]interface{})
         snapshot_map[snap_id] = nil
@@ -93,7 +95,9 @@ func CreatedSnapEventNameTimeResource(sess *session.Session,resource_id string) 
     // Retrieve events associated with the resource name
     resp, err := svc.LookupEvents(params)
     if err != nil {
-		log.Fatalf("service client create cheyyalekapoyam ayya in snapshot")
+        // fmt.Println(resourceName)
+        fmt.Println("service client create cheyyalekapoyam ayya in snap ",err)
+		// log.Fatalf("service client create cheyyalekapoyam ayya in snapshot")
     }
 
 

@@ -5,12 +5,13 @@ import (
     "bufio"
     "os"
     "encoding/json"
+    "fmt"
 )
 
 func AWS_resource_reader_from_txt(path string) ([]string, error) {
     file, err := os.Open(path)
     if err != nil {
-        log.Fatal("error reading the file")
+        log.Fatal("error reading the file ",err)
     }
     defer file.Close()
 
@@ -19,6 +20,7 @@ func AWS_resource_reader_from_txt(path string) ([]string, error) {
     for scanner.Scan() {
         lines = append(lines, scanner.Text())
     }
+    fmt.Println("length of files read ",len(lines))
     return lines, scanner.Err()
 }
 
